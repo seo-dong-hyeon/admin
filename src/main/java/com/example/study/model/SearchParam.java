@@ -1,10 +1,12 @@
 package com.example.study.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class SearchParam {
     private String account;
     private String email;
