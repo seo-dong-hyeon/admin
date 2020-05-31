@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,10 +21,27 @@ public class Item {
 
     private String name;
 
-    private Integer price;
+    private String title;
+
+    private String status;
+
+    private BigDecimal price;
 
     private String content;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-    List<OrderDetail> orderDetailList;
+    private String brandName;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAt;
+
+    private LocalDateTime createdAt;
+
+    private String createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private String updatedBy;
+
+    private Long partnerId;
 }
