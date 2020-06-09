@@ -20,18 +20,23 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     @Test
     public void create(){
-        User user = new User();
-        user.setAccount("test1");
-        user.setPassword("test1");
+        /*User user = new User();
+        user.setAccount("test3");
+        user.setPassword("test3");
         user.setStatus("REGISTERED");
-        user.setPhoneNumber("010-1111-1111");
-        user.setRegisteredAt(LocalDateTime.now());
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("Admin");
+        user.setPhoneNumber("010-3333-3333");
+        user.setRegisteredAt(LocalDateTime.now());*/
+
+        User user = User.builder()
+                .account("test4")
+                .password("test4")
+                .status("REGISTERED")
+                .phoneNumber("010-4444-4444")
+                .build();
 
         User newUser = userRepository.save(user);
         Assert.assertNotNull(newUser);
-        Assert.assertEquals(newUser.getAccount(),"test1");
+        Assert.assertEquals(newUser.getAccount(),"test4");
     }
 
     @Test
@@ -39,20 +44,35 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void read(){
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-1111");
         Assert.assertNotNull(user);
-        System.out.println(user);
+
+        user.getOrderGroupList().stream().forEach(orderGroup -> {
+            System.out.println(orderGroup.getArrivalDate());
+            System.out.println(orderGroup.getRevName());
+            orderGroup.getOrderDetailList().stream().forEach(orderDetail -> {
+                System.out.println(orderDetail.getStatus());
+                System.out.println(orderDetail.getArrivalDate());
+
+                System.out.println(orderDetail.getItem().getName());
+                System.out.println(orderDetail.getItem().getPartner().getBusinessNumber());
+                System.out.println(orderDetail.getItem().getPartner().getCategory().getTitle());
+
+            });
+        });
 
     }
 
     @Test
     public void update(){
-        Optional<User> optionalUser = userRepository.findById(3L);
+        /*Optional<User> optionalUser = userRepository.findById(3L);
         optionalUser.ifPresent(user -> {
-            user.setAccount("newTest");
-            user.setUpdatedAt(LocalDateTime.now());
-            user.setUpdatedBy("updater");
+            user.setPassword("test333");
 
             userRepository.save(user);
-        });
+        });*/
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-4444-4444");
+        user.setEmail("test4@naver.com").setPassword("test44");
+        userRepository.save(user);
+
     }
 
     @Test
