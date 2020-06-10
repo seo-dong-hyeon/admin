@@ -20,13 +20,6 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     @Test
     public void create(){
-        /*User user = new User();
-        user.setAccount("test3");
-        user.setPassword("test3");
-        user.setStatus("REGISTERED");
-        user.setPhoneNumber("010-3333-3333");
-        user.setRegisteredAt(LocalDateTime.now());*/
-
         User user = User.builder()
                 .account("test4")
                 .password("test4")
