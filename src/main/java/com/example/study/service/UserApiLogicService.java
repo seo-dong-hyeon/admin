@@ -2,6 +2,7 @@ package com.example.study.service;
 
 import com.example.study.ifs.CrudInterface;
 import com.example.study.model.entity.User;
+import com.example.study.model.enumclass.UserStatus;
 import com.example.study.model.network.Header;
 import com.example.study.model.network.reponse.UserApiResponse;
 import com.example.study.model.network.request.UserApiRequest;
@@ -25,7 +26,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .email(userApiRequest.getEmail())
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .registeredAt(LocalDateTime.now())
@@ -53,6 +54,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
 
         return optionalUser.map(user -> {
             user.setAccount(userApiRequest.getAccount())
+                    .setStatus(userApiRequest.getStatus())
                     .setPassword(userApiRequest.getPassword())
                     .setEmail(userApiRequest.getEmail())
                     .setPhoneNumber(userApiRequest.getPhoneNumber())
