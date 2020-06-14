@@ -3,6 +3,7 @@ package com.example.study.repository;
 import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.OrderDetail;
 import com.example.study.model.entity.User;
+import com.example.study.model.enumclass.UserStatus;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
         User user = User.builder()
                 .account("test4")
                 .password("test4")
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber("010-4444-4444")
                 .build();
 
